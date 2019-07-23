@@ -1,0 +1,17 @@
+.post-block{
+    margin:3%;
+    padding: 3%;
+    width: 100%;
+    background-color: azure;
+    border: 1px solid rgb(198, 229, 233);
+    -webkit-box-shadow: 10px 7px 37px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 7px 37px -5px rgba(0,0,0,0.75);
+    box-shadow: 10px 7px 37px -5px rgba(0,0,0,0.75);
+}
+
+.post-content p{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
