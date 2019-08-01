@@ -6,10 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu-top.component.css']
 })
 export class MenuTopComponent implements OnInit {
-  public isHome = true;
+  isHome = true;
   isNewPost = false;
-  isMainScreen = false;
-
   isCollapsed = true;
 
   constructor() { }
@@ -19,20 +17,13 @@ export class MenuTopComponent implements OnInit {
 
   onIndex(){
     this.isHome = true;
-    this.isMainScreen = false;
     this.isNewPost = false;
   }
 
   onPostForm(){
     this.isHome = false;
-    this.isMainScreen = false;
     this.isNewPost = true;
   }
 
-  onMainScreen(){
-    this.isHome = false;
-    this.isMainScreen = true;
-    this.isNewPost = false;
-  }
 
 }

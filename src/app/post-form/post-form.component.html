@@ -1,17 +1,63 @@
-<div class="row">
-    <div class="col-md-12">
-        <h3>Post Fomr</h3><hr>
-        <form>
-            <div class="form-group">
-                <label for="title">Post Title:</label>
-                <input type="text" name="title" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="title">Post Content:</label>
-                <input type="text" name="content" class="form-control">
-            </div>
-            <input type="button" 
-            class="btn btn-primary" value="Submit">
-        </form>
+<div class="col-xs-12">
+    <h3>Post Form</h3><hr>
+    <form  #form="ngForm" (ngSubmit)="onSubmit(form)"
+    style="max-width: 800px;">
+        <input [(ngModel)]="post.id" 
+        type="hidden" name="id">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input [(ngModel)]="post.title" minlength="1"
+            type="text" name="title" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="title">Content:</label>
+            <textarea [(ngModel)]="post.content" minlength="1"
+            type="text" name="content"
+            class="form-control" rows="10"></textarea>
+        </div>
+       
+        <button type="submit" 
+        class="btn" [ngClass]="isWarning?'btn-warning':'btn-primary'"> <!-- [className]="{primary$:'btn-primary'?'btn-warning'}"> -->
+        {{isWarning?'Change':'Send'}}
+        </button>{{' '}}
+        <button *ngIf="isWarning" 
+        class="btn btn-secondary" (click)="onCancelIt(form)">Cancel</button>
+    </form>
+
+    <h2>Post Mananger</h2>
+    <div *ngIf="posts$ | async as postList; else loadingError">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th hidden>Id</th>
+                    <th>Title</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let post of postList">
+                <tr>
+                    <td hidden>{{post.id}}</td>
+                    <td>{{post.title}}</td>
+                    <td>
+                        <button class="btn btn-warning" 
+                        (click)="onUpdate(post.id)">Update</button>
+                        {{''}}<!--GAMBIARRA-->
+                        <button class="btn btn-danger"
+                        (click)="onRemove(post.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+    <ng-template #loadingError>
+        <div *ngIf="error$ | async; else loading" 
+             class="alert alert-danger">
+            Not was possible load this consult.
+        </div>
+        <ng-template #loading>
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </ng-template>
+    </ng-template>
 </div>

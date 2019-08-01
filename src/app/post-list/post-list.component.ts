@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { PostService } from '../post.service';
+import { Post } from '../post.model';
+import { Observable, Subscriber, empty, Subject } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
+import { post } from 'selenium-webdriver/http';
+import { ModalService } from '../shared/modal.service';
+
 
 @Component({
   selector: 'app-post-list',
@@ -6,37 +14,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit {
-  postList = [
-    {postTitle:'How to study angular',
-     postContent:'Mussum Ipsum, cacilds vidis litro abertis.'+
-     'Posuere libero varius. Nullam a nisl ut ante blandit hendrerit.'+
-     'Aenean sit amet nisi. Quem num gosta di mim que vai caçá sua turmis!'+
-     'Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.'+
-     'Si num tem leite então bota uma pinga aí cumpadi!',
-     postDate:'12/06/2019'
-    },
-    {postTitle:'How to study angular',
-    postContent:'Mussum Ipsum, cacilds vidis litro abertis.'+
-    'Posuere libero varius. Nullam a nisl ut ante blandit hendrerit.'+
-    'Aenean sit amet nisi. Quem num gosta di mim que vai caçá sua turmis!'+
-    'Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.'+
-    'Si num tem leite então bota uma pinga aí cumpadi!',
-    postDate:'12/06/2019'
-   },
-   {postTitle:'How to study angular',
-   postContent:'Mussum Ipsum, cacilds vidis litro abertis.'+
-   'Posuere libero varius. Nullam a nisl ut ante blandit hendrerit.'+
-   'Aenean sit amet nisi. Quem num gosta di mim que vai caçá sua turmis!'+
-   'Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.'+
-   'Si num tem leite então bota uma pinga aí cumpadi!',
-   postDate:'12/06/2019'
-  },
-   
-  ]
-
-  constructor() { }
+  //list: Post[];
+  posts$: Observable<Post[]>;
+  error$ = new Subject<boolean>();
+  
+  constructor(
+    private postService: PostService,
+    private modalService: ModalService
+  ) {}
 
   ngOnInit() {
+    //this.postService.simpleList()
+    //.subscribe(dado => this.list = dado);
+    this.reafreshList();
+  }
+
+  reafreshList(){
+    this.posts$ = this.postService.getList()
+    .pipe( 
+      catchError(error=>{
+        console.log(error);
+        this.error$.next(true);
+        this.modalService.handleError("danger", "Error on get List");
+        return empty();
+      })
+    );
   }
 
 }

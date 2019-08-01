@@ -1,6 +1,19 @@
 <div class="row">
-    <div class="col-md-12 col-xs-12">
+    <div *ngIf="posts$ | async as postList; else loadingError"
+    class="col-md-12 col-xs-12">
         <app-post *ngFor="let post of postList"
         [post]="post"></app-post>
     </div>
+    <ng-template #loadingError>
+        <div *ngIf="error$ | async; else loading">
+            <div class="alert alert-danger">Not was possible load the post list.</div>
+        </div>
+        <ng-template #loading>
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </ng-template>
+    </ng-template>
+
+
 </div>

@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "title": "How to study Angular",
+      "content": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo. Interagi no mé, cursus quis, vehicula ac nisi. Si num tem leite então bota uma pinga aí cumpadi! Casamentiss faiz malandris se pirulitá.",
+      "date": "1/7/2019",
+      "id": 1
+    },
+    {
+      "title": "How to study Java",
+      "content": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo. Interagi no mé, cursus quis, vehicula ac nisi. Si num tem leite então bota uma pinga aí cumpadi! Casamentiss faiz malandris se pirulitá.",
+      "date": "1/7/2019",
+      "id": 2
+    },
+    {
+      "title": "How to fix the COURS error",
+      "content": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo. Interagi no mé, cursus quis, vehicula ac nisi. Si num tem leite então bota uma pinga aí cumpadi! Casamentiss faiz malandris se pirulitá.",
+      "date": "1/7/2019",
+      "id": 3
+    }
+  ]
+}

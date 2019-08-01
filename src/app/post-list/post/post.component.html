@@ -1,12 +1,18 @@
-<div class="post-block">
+<script>
+    new WOW().init();
+</script>
+<div class="post-block" data-wow-duration="2s" data-wow-delay="5s">
     <div class="post-content">
-        <div class="post-tittle">
-            <h2><a href="">{{post.postTitle}}</a></h2>
-            <p>Date: {{post.postDate}}</p>
+        <input type="hidden" name="id" value='{{ post.id }}'>
+        <div class="post-title">
+            <h2><a href="">{{post.title}}</a></h2>
             <hr>
         </div>
+        <div class="post-date">
+            <p>{{post.date}}</p>
+        </div>
         <div class="post-content">
-            <p>{{post.postContent}}</p>
+            <p>{{post.content}}</p>
         </div>
     </div>
 </div>

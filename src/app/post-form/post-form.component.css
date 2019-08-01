@@ -1,0 +1,12 @@
+table{
+    animation: showWow 1s;
+}
+
+@keyframes showWow{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
