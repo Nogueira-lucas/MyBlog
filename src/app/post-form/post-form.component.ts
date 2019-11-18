@@ -13,7 +13,7 @@ import { FormGroup, FormControl, NgForm } from '@angular/forms';
 })
 export class PostFormComponent implements OnInit {
 
-  post = new Post();
+  post: Post;
   posts$: Observable<Post[]>;
   error$ = new Subject<boolean>();
   isWarning: boolean;
